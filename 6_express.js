@@ -1,8 +1,24 @@
 const Joi = require('joi');
 const express = require('express');
 const app = express();
+const log = require('./7_middleware');
 
+//Template Engine
+app.set('view engine','pug');
+app.set('views','./views');
+
+//Build In Middle Ware
 app.use(express.json());
+app.use(express.urlencoded({extended : true}));
+app.use(express.static('public')); //Can read file readme in public folder without enter slug public
+
+// Custom Middle Ware
+app.use(log);
+
+app.use((req,res,next)=>{
+    console.log("Authenticate...");
+    next();
+});
 
 const courses = [
     { id:1, name:"course1"},
@@ -11,7 +27,7 @@ const courses = [
 ];
 
 app.get('/',(req,res) => {
-    res.send("Hello Bart");
+    res.render('index',{title:'My Express App',message:'Hello'});
 });
 
 app.get('/api/courses',(req,res)=>{
