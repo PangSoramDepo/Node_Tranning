@@ -23,7 +23,7 @@
     "express": "^4.17.1",
     "joi": "^13.0.1",
     "macaddress": "^0.5.1",
-    "mongoose": "^5.10.15",
+    "mongoose": "^5.11.5",
     "node-datetime": "^2.1.2",
     "pug": "^3.0.0",
     "underscore": "^1.4.0"
