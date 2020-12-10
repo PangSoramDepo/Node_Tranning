@@ -1,24 +1,6 @@
-const mongoose = require('mongoose');
+const {Posts,validate} = require('../models/post');
 const express = require('express');
 const router = express.Router();
-const Joi = require('joi');
-
-const Posts = new mongoose.model('Post',new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 20
-    },
-    category: {
-        type: String,
-        enum: ["Web","Mobile","Network"],
-        lowercase: true,
-        // uppercase: true,
-        trim: true
-    },
-    body: String,
-}));
 
 router.get('/',async (req,res)=>{
     const posts = await Posts.find().sort('-title');
@@ -32,7 +14,7 @@ router.get('/:id',async (req,res)=>{
 });
 
 router.post('/',async (req,res)=>{
-    const {error} = validatePost(req.body); // error = result.error (Object Destructuring)
+    const {error} = validate(req.body); // error = result.error (Object Destructuring)
     if(error) return res.status(400).send(error.details[0].message);
 
     let post = new Posts({
@@ -44,7 +26,7 @@ router.post('/',async (req,res)=>{
 });
 
 router.put('/:id',async (req,res)=>{
-    const {error} = validatePost(req.body); // error = result.error (Object Destructuring)
+    const {error} = validate(req.body); // error = result.error (Object Destructuring)
     if(error) return res.status(400).send(error.details[0].message);
 
     let post = await Posts.findByIdAndUpdate(req.params.id,{
@@ -60,13 +42,5 @@ router.delete('/:id',async (req,res)=>{
     if (!post) return res.status(404).send(`The post with the given ID ${req.params.id} not found`);
     res.send(post); 
 });
-
-function validatePost(posts){
-    const schema = {
-        title : Joi.string().min(3).required(),
-        body : Joi.allow()
-    };
-    return Joi.validate(posts,schema);
-}
 
 module.exports = router;
