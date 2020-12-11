@@ -17,12 +17,17 @@ router.post('/',async (req,res)=>{
     const {error} = validate(req.body); // error = result.error (Object Destructuring)
     if(error) return res.status(400).send(error.details[0].message);
 
-    let post = new Posts({
-        title: req.body.title,
-        body: req.body.body
-    });
-    post = await post.save();
-    res.send(post);
+    try {
+        let post = new Posts({
+            title: req.body.title,
+            body: req.body.body,
+            author: req.body.author
+        });
+        post = await post.save();
+        res.send(post);
+    } catch (error) {
+        res.send(error.message);
+    }
 });
 
 router.put('/:id',async (req,res)=>{

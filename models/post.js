@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
+const authorSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    age: Number
+});
+
 const Posts = new mongoose.model('Post',new mongoose.Schema({
     title: {
         type: String,
@@ -15,13 +23,18 @@ const Posts = new mongoose.model('Post',new mongoose.Schema({
         // uppercase: true,
         trim: true
     },
+    author: {
+        type: authorSchema,
+        required: true
+    },
     body: String,
 }));
 
 function validatePost(posts){
     const schema = {
         title : Joi.string().min(5).required(),
-        body : Joi.allow()
+        body : Joi.allow(),
+        author : Joi.allow()
     };
     return Joi.validate(posts,schema);
 }
