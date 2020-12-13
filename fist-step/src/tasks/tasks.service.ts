@@ -13,19 +13,9 @@ export class TasksService {
         private taskRepository: TaskRepository
     ){}
 
-    // getAllTasks(): Task[]{
-    //     return this.tasks;
-    // }
-
-    // getTasksWithFilters(filterDto : GetTaskFilterDto): Task[] {
-    //     const { status, search } = filterDto;
-    //     let tasks= this.getAllTasks();
-    //     if(status)
-    //         tasks = tasks.filter(task => task.status == status);
-    //     if(search)
-    //         tasks = tasks.filter(task => task.title.includes(search) || task.description.includes(search));
-    //     return tasks;
-    // }
+    async getAllTasks(filterDto : GetTaskFilterDto): Promise<Task[]>{
+        return await this.taskRepository.getTask(filterDto);
+    }
 
     async getTaskById(id: number): Promise<Task>{
         const found = await this.taskRepository.findOne(id);
@@ -37,31 +27,16 @@ export class TasksService {
         return this.taskRepository.createTask(createTaskDto);
     }
 
-    // deleteTask(id:String): void{
-    //     // Approach 1
-    //     // let index = this.tasks.indexOf(this.tasks.find(task => task.id==id));
-    //     // this.tasks.splice(index,1);
+    async deleteTask(id: number): Promise<void>{
+        const result = await this.taskRepository.delete(id);
+        if(result.affected === 0) throw new NotFoundException(`Task with ${id} Not Found!!!`);
+    }
 
-    //     // Approach 2
-    //     // this.tasks = this.tasks.filter(task => task.id != id);
-
-    //     // Approach 3
-    //     const found = this.getTaskById(id);
-    //     this.tasks = this.tasks.filter(task => task.id != found.id);
-    // }
-
-    // // Approach 1
-    // updateTask(id: string, status: string): Task{
-    //     let task = this.tasks.find(task => task.id==id);
-    //     task.status = TaskStatus[status];
-    //     return task;
-    // }
-
-    // // Approach 2
-    // updateTask2(id: string, status: TaskStatus){
-    //     //Without repeat not found validation code --> this approach is the win win situation NestJS
-    //     const task = this.getTaskById(id);
-    //     task.status = status;
-    //     return task;
-    // }
+    async updateTask(id: number, status: TaskStatus){
+        //Without repeat not found validation code --> this approach is the win win situation NestJS
+        const task = await this.getTaskById(id);
+        task.status = status;
+        await task.save();
+        return task;
+    }
 }

@@ -1,4 +1,4 @@
-4-4
+5-1
 
 ***Install Pipe Validation
 npm i class-validator class-transformer
@@ -16,3 +16,7 @@ _DTO can define using interface or class (recommend use classes)
 
 ***TypeORM
 _is an ORM library that can run in Node.js and be used with TypeScript (Or Javascript)
+
+***The defference between Delete and Remove :
+_Remove need to get and than Remove
+_Delete is delete direct without get first
