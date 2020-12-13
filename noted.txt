@@ -1,7 +1,9 @@
-2-12
+4-4
 
 ***Install Pipe Validation
 npm i class-validator class-transformer
+
+npm i @nestjs/typeorm typeorm pg
 
 ***DTO (Data Transfer Object) 2-13: 
 _is an object that carries data between processes.
@@ -11,3 +13,6 @@ _DTO can define using interface or class (recommend use classes)
 -->Sometime people use DTO to define the Model : this is wrong...
  
 *** NestJS can not refer to interface in run-time, but can refer to classes
+
+***TypeORM
+_is an ORM library that can run in Node.js and be used with TypeScript (Or Javascript)
