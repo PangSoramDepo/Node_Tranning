@@ -1,5 +1,7 @@
 2-12
 
+***Install Pipe Validation
+npm i class-validator class-transformer
 
 ***DTO (Data Transfer Object) 2-13: 
 _is an object that carries data between processes.
