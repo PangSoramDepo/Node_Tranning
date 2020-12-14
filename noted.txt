@@ -5,6 +5,11 @@ npm i class-validator class-transformer
 
 npm i @nestjs/typeorm typeorm pg
 
+npm i @nestjs/jwt
+npm i @nestjs/passport passport passport-jwt
+
+npm i bcrypt
+
 ***DTO (Data Transfer Object) 2-13: 
 _is an object that carries data between processes.
 _is an object that defines how the data will be sent over the network.
