@@ -10,6 +10,8 @@ npm i @nestjs/passport passport passport-jwt
 
 npm i bcrypt
 
+npm i config
+
 ***DTO (Data Transfer Object) 2-13: 
 _is an object that carries data between processes.
 _is an object that defines how the data will be sent over the network.
@@ -25,3 +27,10 @@ _is an ORM library that can run in Node.js and be used with TypeScript (Or Javas
 ***The defference between Delete and Remove :
 _Remove need to get and than Remove
 _Delete is delete direct without get first
+
+***Type of log
+_General Log: 
+_Warning
+_Error
+_Debug
+_Verbose

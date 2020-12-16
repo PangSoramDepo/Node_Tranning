@@ -1,4 +1,4 @@
-import { ConflictException } from "@nestjs/common";
+import { ConflictException, Logger } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { AuthCredentialDto } from "./dto/auth-credential.dto";
 import { User } from "./user.entity";
@@ -6,6 +6,8 @@ import * as bcrypt from 'bcrypt';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User>{
+
+    private logger = new Logger('AuthController');
 
     async Signup(authCredentialDto: AuthCredentialDto) : Promise<void>{
         const { username, password } = authCredentialDto;
@@ -19,6 +21,7 @@ export class UserRepository extends Repository<User>{
             await user.save();
         } catch (error) {
             console.log(`Error: ${error}`);
+            this.logger.error(`Fail to create user with AuthCredentialDTO ${JSON.stringify(authCredentialDto)}`,error.stack);
             throw new ConflictException(error.message);
         }
     }
