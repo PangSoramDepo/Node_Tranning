@@ -34,3 +34,6 @@ _Warning
 _Error
 _Debug
 _Verbose
+
+***Config know that running on development or production is depend on NODE_ENV enviroment virable
+_if NODE_ENV not define so it will on development mode by default

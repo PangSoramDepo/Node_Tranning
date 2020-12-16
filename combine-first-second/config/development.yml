@@ -1,0 +1,8 @@
+db:
+  host: 'localhost'
+  username: 'odoo'
+  password: 'odoo'
+  synchronize: true
+
+jwt:
+  secret: 'Depo!23$'
