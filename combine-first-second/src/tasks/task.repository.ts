@@ -8,7 +8,7 @@ import { Task } from "./task.entity";
 @EntityRepository(Task)
 export class TaskRepository extends Repository<Task>{
 
-    async getTask(
+    async getTasks(
         filterDto: GetTaskFilterDto,
         user: User
     ): Promise<Task[]>{
