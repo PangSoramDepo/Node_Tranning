@@ -1,4 +1,13 @@
-12-1
+12-11
+
+*** Nest-JSCommand
+
+nest new $$project_name
+npm run start:dev
+nest g module $$name //g stand for generate
+nest g controller $$name --no-spec //no spec for no generate spec file that write unit test
+nest g service $$name --no-spec
+npm i class-validator class-transformer // install for using Pipe validation
 
 ***Install Pipe Validation
 npm i class-validator class-transformer
@@ -11,6 +20,11 @@ npm i @nestjs/passport passport passport-jwt
 npm i bcrypt
 
 npm i config
+
+npm i graphql graphql-tools apollo-server-express @nestjs/graphql
+
+//TypeORM is typeorm, @nestjs/typeorm is easy use typeorm with nestjs, mongodb for connect to mongo, @types/mongodb for use mongodb easy with TypeScript
+npm i typeorm @nestjs/typeorm mongodb @types/mongodb
 
 ***DTO (Data Transfer Object) 2-13: 
 _is an object that carries data between processes.
