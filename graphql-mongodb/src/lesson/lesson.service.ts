@@ -12,6 +12,10 @@ export class LessonService {
         private lessonRepository: Repository<Lesson>,
     ){}
 
+    async getAllLesson(){
+        return this.lessonRepository.find();
+    }
+
     async getLesson(id){
         // This Mongo will search for mongo id (_id)
         // return this.lessonRepository.findOne(id);
