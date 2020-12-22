@@ -1,4 +1,4 @@
-12-11
+12-15
 
 *** Nest-JSCommand
 
@@ -22,6 +22,8 @@ npm i bcrypt
 npm i config
 
 npm i graphql graphql-tools apollo-server-express @nestjs/graphql
+
+npm i uuid
 
 //TypeORM is typeorm, @nestjs/typeorm is easy use typeorm with nestjs, mongodb for connect to mongo, @types/mongodb for use mongodb easy with TypeScript
 npm i typeorm @nestjs/typeorm mongodb @types/mongodb

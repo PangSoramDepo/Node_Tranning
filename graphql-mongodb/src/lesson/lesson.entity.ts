@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import { Column, Entity, ObjectIdColumn, PrimaryColumn } from "typeorm";
 
 @Entity()
