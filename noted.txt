@@ -1,5 +1,3 @@
-12-23
-
 *** Nest-JSCommand
 
 nest new $$project_name
